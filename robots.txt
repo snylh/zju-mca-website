@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /_research/
+Disallow: /_design/
+Disallow: /_qa/
+Disallow: /_tools/
+Disallow: /_deploy/

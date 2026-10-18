@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 浙大魔协 · favicon 32x32（自带深空圆角底，深浅主题标签页均可辨认）| id 前缀 zg-fv- -->
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+<defs>
+<linearGradient id="zg-fv-gold" x1="0.12" y1="0" x2="0.88" y2="1"><stop offset="0" stop-color="#FFEDCF"/><stop offset="0.42" stop-color="#F8CB7C"/><stop offset="1" stop-color="#C68D3D"/></linearGradient>
+<linearGradient id="zg-fv-goldline" x1="128" y1="206" x2="128" y2="241" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FFE3AE"/><stop offset="1" stop-color="#D9A455"/></linearGradient>
+<linearGradient id="zg-fv-faceR" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3C2C69"/><stop offset="1" stop-color="#1A1234"/></linearGradient>
+<linearGradient id="zg-fv-faceL" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#281B4C"/><stop offset="1" stop-color="#100A26"/></linearGradient>
+<radialGradient id="zg-fv-halo" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#F5C26B" stop-opacity="0.1"/><stop offset="0.55" stop-color="#F5C26B" stop-opacity="0.04"/><stop offset="1" stop-color="#F5C26B" stop-opacity="0"/></radialGradient>
+<radialGradient id="zg-fv-starhalo" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#F5C26B" stop-opacity="0.28"/><stop offset="0.55" stop-color="#F5C26B" stop-opacity="0.11"/><stop offset="1" stop-color="#F5C26B" stop-opacity="0"/></radialGradient>
+</defs>
+<g><rect x="0.5" y="0.5" width="31" height="31" rx="7.5" fill="#0B0618"/><circle cx="16" cy="18" r="14.5" fill="url(#zg-fv-halo)"/><path d="M 16,10.6 L 22.5,14.35 L 16,18.1 L 9.5,14.35 Z" fill="url(#zg-fv-gold)" stroke="#FFE8BE" stroke-opacity="0.95" stroke-width="0.8" stroke-linejoin="round"/><path d="M 22.5,14.35 L 22.5,21.85 L 16,25.6 L 16,18.1 Z" fill="url(#zg-fv-faceR)" stroke="#F5C26B" stroke-opacity="0.65" stroke-width="0.7" stroke-linejoin="round"/><path d="M 9.5,14.35 L 16,18.1 L 16,25.6 L 9.5,21.85 Z" fill="url(#zg-fv-faceL)" stroke="#F5C26B" stroke-opacity="0.5" stroke-width="0.7" stroke-linejoin="round"/><path d="M 22.5 14.35 L 22.5 21.85" fill="none" stroke="#5EE7DF" stroke-opacity="0.55" stroke-width="0.7" stroke-linecap="round"/><circle cx="16" cy="6.2" r="6.5" fill="url(#zg-fv-starhalo)"/><path d="M 16 2 Q 16.44 5.56 20 6 Q 16.44 6.44 16 10 Q 15.56 6.44 12 6 Q 15.56 5.56 16 2 Z" fill="url(#zg-fv-gold)" opacity="1"/><rect x="0.5" y="0.5" width="31" height="31" rx="7.5" fill="none" stroke="#F5C26B" stroke-opacity="0.28" stroke-width="0.6"/></g>
+</svg>

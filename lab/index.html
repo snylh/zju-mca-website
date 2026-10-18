@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="浙大魔协 · 魔方实验室：把公式拆成看得见的手感。3D 互动魔方、六条入门公式分步演示、速拧计时器与魔方记号可视化。">
+  <meta name="theme-color" content="#0B0618">
+  <title>魔方实验室 · RUBIK'S LAB | 浙江大学学生魔术魔方协会</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230B0618'/%3E%3Cpath d='M32 10 54 22v20L32 54 10 42V22z' fill='none' stroke='%23F5C26B' stroke-width='2.4'/%3E%3Cpath d='M10 22l22 12 22-12M32 34v20' fill='none' stroke='%23F5C26B' stroke-width='2.4'/%3E%3Cpath d='M22 16l20 12' stroke='%235EE7DF' stroke-width='2.4'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="lab.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+
+  <!-- 背景：深空紫黑 + 细节网格 + 星点 + 两处光晕 -->
+  <div class="page-bg" aria-hidden="true">
+    <div class="bg-grid"></div>
+    <div class="bg-stars"></div>
+    <div class="bg-stars bg-stars--far"></div>
+    <div class="bg-aura bg-aura--gold"></div>
+    <div class="bg-aura bg-aura--cyan"></div>
+    <div class="bg-aura bg-aura--magenta"></div>
+  </div>
+
+  <!-- 顶部返回条 -->
+  <header class="topbar">
+    <a class="brand" href="../index.html" aria-label="返回浙大魔协官网首页">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M24 4 43 14.5v19L24 44 5 33.5v-19L24 4Z" stroke="url(#brandGrad)" stroke-width="1.6"/>
+          <path d="M5 14.5 24 25l19-10.5M24 25v19" stroke="url(#brandGrad)" stroke-width="1.4" opacity=".85"/>
+          <path d="M14.5 9.5 33.5 20" stroke="#5EE7DF" stroke-width="1.6" stroke-linecap="round"/>
+          <circle cx="24" cy="25" r="1.8" fill="#F5C26B"/>
+          <defs>
+            <linearGradient id="brandGrad" x1="5" y1="4" x2="43" y2="44" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#F5C26B"/><stop offset="1" stop-color="#FF4D9D" stop-opacity=".8"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </span>
+      <span class="brand-text">
+        <strong>浙大魔协</strong>
+        <em>MAGIC &amp; CUBE · EST. 2004</em>
+      </span>
+    </a>
+
+    <nav class="topnav" aria-label="页面导航">
+      <a href="#stage">实验台</a>
+      <a href="#formulas">公式库</a>
+      <a href="#timer">计时器</a>
+      <a href="#notation">记号说明</a>
+    </nav>
+
+    <a class="back-home" href="../index.html">
+      <span aria-hidden="true">←</span> 返回主站
+    </a>
+  </header>
+
+  <main id="main">
+    <!-- ===================== HERO ===================== -->
+    <section class="hero" aria-labelledby="pageTitle">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-dot"></span>RUBIK'S LAB · 互动实验室</p>
+        <h1 id="pageTitle">魔方实验室<span class="title-en">RUBIK'S LAB</span></h1>
+        <p class="hero-sub">把公式拆成看得见的手感。<br>拖一拖、拧一拧，在浏览器里听见第一颗魔方「咔哒」归位。</p>
+        <div class="hero-tags" aria-label="页面亮点">
+          <span>3D 交互魔方</span>
+          <span>6 条入门公式</span>
+          <span>竞速计时器</span>
+          <span>纯前端 · 无需登录</span>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <svg class="hero-cube" viewBox="0 0 320 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="hgGold" x1="60" y1="40" x2="270" y2="290" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#F5C26B" stop-opacity=".9"/><stop offset="1" stop-color="#F5C26B" stop-opacity=".18"/>
+            </linearGradient>
+            <linearGradient id="hgCyan" x1="80" y1="60" x2="260" y2="270" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#5EE7DF" stop-opacity=".85"/><stop offset="1" stop-color="#5EE7DF" stop-opacity=".1"/>
+            </linearGradient>
+            <radialGradient id="hgGlow" cx="50%" cy="45%" r="55%">
+              <stop stop-color="#F5C26B" stop-opacity=".22"/><stop offset=".62" stop-color="#FF4D9D" stop-opacity=".08"/><stop offset="1" stop-color="#0B0618" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <circle cx="160" cy="152" r="148" fill="url(#hgGlow)"/>
+          <g stroke="url(#hgGold)" stroke-width="1.2" opacity=".9">
+            <path d="M160 42 262 100v116L160 274 58 216V100L160 42Z"/>
+            <path d="M58 100l102 58 102-58M160 158v116"/>
+          </g>
+          <g stroke="url(#hgCyan)" stroke-width="1" opacity=".55">
+            <path d="M58 100 160 158 262 100M58 216l102-58 102 58"/>
+            <path d="M160 42v116M58 100v116M262 100v116"/>
+          </g>
+          <g fill="#F5C26B">
+            <circle cx="160" cy="42" r="3"/><circle cx="262" cy="100" r="2.4"/><circle cx="58" cy="100" r="2.4"/>
+            <circle cx="160" cy="274" r="3" fill="#5EE7DF"/><circle cx="58" cy="216" r="2.4" fill="#5EE7DF"/><circle cx="262" cy="216" r="2.4" fill="#5EE7DF"/>
+          </g>
+          <g stroke="#F5C26B" stroke-width="1" opacity=".35" stroke-dasharray="2 7">
+            <circle cx="160" cy="158" r="128"/>
+          </g>
+        </svg>
+      </div>
+    </section>
+
+    <!-- ===================== 01 实验台 ===================== -->
+    <section class="lab-card" id="stage" aria-labelledby="stageTitle">
+      <header class="card-head">
+        <div>
+          <p class="card-eyebrow">01 · PLAYGROUND</p>
+          <h2 id="stageTitle">3D 魔方实验台</h2>
+        </div>
+        <p class="card-note">拖拽旋转视角 · 按钮 / 键盘拧动 · 带动画队列</p>
+      </header>
+
+      <div class="stage-layout">
+        <div class="cube-panel">
+          <div class="cube-viewport" id="cubeViewport" role="group" tabindex="0"
+               aria-label="3D 魔方展示区：按住拖拽可旋转视角，双击复位视角">
+            <div class="cube-hex" aria-hidden="true"></div>
+            <div class="cube-scaler">
+              <div class="cube-scene" id="cubeScene">
+                <!-- 26 个小块由 lab.js 注入 -->
+                <div class="cube" id="cubeRoot" aria-hidden="true"></div>
+              </div>
+            </div>
+            <div class="cube-shadow" aria-hidden="true"></div>
+          </div>
+          <p class="cube-hint">
+            <span class="hint-dot" aria-hidden="true"></span>
+            按住拖拽旋转视角 · 双击复位 · 滚轮不做缩放，避免误触
+          </p>
+          <div class="cube-meta">
+            <span class="pill" id="cubeStatus">已复原</span>
+            <span class="pill pill-quiet" id="queueStatus">队列空闲</span>
+            <span class="pill pill-quiet" id="moveCount">0 步</span>
+          </div>
+        </div>
+
+        <div class="control-panel" id="controlPanel">
+          <div class="control-block">
+            <h3 class="control-title">面转按钮 <em>FACE TURNS</em></h3>
+            <div class="face-controls" id="faceControls">
+              <!-- 6 组面转按钮由 lab.js 注入 -->
+            </div>
+          </div>
+
+          <div class="control-block">
+            <h3 class="control-title">快捷操作 <em>ACTIONS</em></h3>
+            <div class="action-row">
+              <button type="button" class="btn btn-primary" id="btnScramble">打乱魔方</button>
+              <button type="button" class="btn" id="btnReset">复原</button>
+              <button type="button" class="btn" id="btnUndo">撤销</button>
+            </div>
+          </div>
+
+          <div class="control-block">
+            <h3 class="control-title">动画速度 <em>SPEED</em></h3>
+            <div class="segmented" id="speedControl" role="group" aria-label="动画速度">
+              <button type="button" data-speed="slow">慢速</button>
+              <button type="button" data-speed="normal" class="is-active" aria-pressed="true">标准</button>
+              <button type="button" data-speed="fast">快速</button>
+            </div>
+          </div>
+
+          <div class="keyboard-hint">
+            <span class="keyboard-label">键盘</span>
+            <span><kbd>U</kbd><kbd>D</kbd><kbd>L</kbd><kbd>R</kbd><kbd>F</kbd><kbd>B</kbd> 转动</span>
+            <span><kbd>Shift</kbd> + 字母 = 逆时针</span>
+            <span><kbd>空格</kbd> = 计时器</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 02 公式库 ===================== -->
+    <section class="lab-card" id="formulas" aria-labelledby="formulasTitle">
+      <header class="card-head">
+        <div>
+          <p class="card-eyebrow">02 · ALGORITHMS</p>
+          <h2 id="formulasTitle">公式库</h2>
+        </div>
+        <p class="card-note">选一条公式 · 点「演示」看它一步步在魔方上发生</p>
+      </header>
+
+      <div class="formula-layout">
+        <div class="formula-stage">
+          <div class="formula-stage-head">
+            <span class="stage-chip" id="formulaStageChip">底层</span>
+            <h3 id="formulaTitle">底层十字</h3>
+            <span class="formula-en" id="formulaEn">WHITE CROSS</span>
+          </div>
+
+          <div class="formula-top">
+            <div class="formula-preview">
+              <div class="cube-viewport cube-viewport--mini" id="demoCubeViewport"
+                   role="img" aria-label="公式演示用的 3D 魔方">
+                <div class="cube-glow" aria-hidden="true"></div>
+                <div class="cube-scaler">
+                  <div class="cube-scene" id="demoCubeScene">
+                    <div class="cube" id="demoCubeRoot" aria-hidden="true"></div>
+                  </div>
+                </div>
+              </div>
+              <p class="preview-hint"><span class="hint-dot" aria-hidden="true"></span>演示魔方 · 每次从复原状态开始</p>
+            </div>
+            <div class="formula-copy">
+              <p class="formula-desc" id="formulaDesc"></p>
+              <p class="formula-tip" id="formulaTip"></p>
+            </div>
+          </div>
+
+          <div class="token-board" id="formulaTokens" aria-label="公式步骤，演示时高亮当前步"></div>
+
+          <div class="formula-progress" aria-hidden="true">
+            <span id="formulaStepLabel">0 / 0</span>
+            <div class="progress-track"><span id="formulaProgressBar"></span></div>
+          </div>
+
+          <p class="formula-note">演示在小魔方上进行，可随时暂停、单步或重播；不会改动实验台里你的魔方。</p>
+
+          <div class="demo-controls">
+            <button type="button" class="btn btn-primary" id="btnDemoPlay">▶ 演示</button>
+            <button type="button" class="btn" id="btnDemoPause" disabled>⏸ 暂停</button>
+            <button type="button" class="btn" id="btnDemoStep">下一步</button>
+            <button type="button" class="btn" id="btnDemoReplay">↻ 重播</button>
+          </div>
+        </div>
+
+        <div class="formula-list" id="formulaList" role="list">
+          <!-- 6 张公式卡片由 lab.js 注入 -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 03 计时器 ===================== -->
+    <section class="lab-card" id="timer" aria-labelledby="timerTitle">
+      <header class="card-head">
+        <div>
+          <p class="card-eyebrow">03 · TIMER</p>
+          <h2 id="timerTitle">速拧计时器</h2>
+        </div>
+        <p class="card-note">15 秒观察 · 空格开始 / 停止 · 成绩只存在你的浏览器里</p>
+      </header>
+
+      <div class="timer-layout">
+        <div class="timer-main">
+          <div class="timer-top">
+            <span class="timer-state" id="timerState" aria-live="polite">准备就绪 · 按空格开始</span>
+            <span class="timer-badge" id="timerBadge">READY</span>
+          </div>
+
+          <div class="timer-display" id="timerDisplay" role="timer" aria-label="计时器">0.00</div>
+
+          <div class="timer-actions">
+            <button type="button" class="btn btn-primary btn-lg" id="btnTimerPrimary">开始计时</button>
+            <button type="button" class="btn" id="btnTimerInspect">15 秒观察</button>
+            <button type="button" class="btn" id="btnTimerScramble">生成打乱</button>
+          </div>
+
+          <div class="scramble-box">
+            <div class="scramble-head">
+              <span class="scramble-label">当前打乱</span>
+              <button type="button" class="btn btn-ghost btn-sm" id="btnSyncCube">同步到上方魔方</button>
+            </div>
+            <p class="scramble-text" id="timerScramble"></p>
+          </div>
+
+          <p class="timer-hint"><kbd>空格</kbd> 开始 / 停止 · <kbd>Esc</kbd> 取消观察 · 手机端点按钮即可</p>
+        </div>
+
+        <aside class="timer-side" aria-label="成绩统计">
+          <div class="stat-grid">
+            <div class="stat">
+              <span class="stat-label">最佳</span>
+              <strong class="stat-value" id="statBest">--</strong>
+            </div>
+            <div class="stat">
+              <span class="stat-label">ao5</span>
+              <strong class="stat-value" id="statAo5">--</strong>
+            </div>
+            <div class="stat">
+              <span class="stat-label">完成</span>
+              <strong class="stat-value" id="statCount">0</strong>
+            </div>
+          </div>
+
+          <div class="time-list-head">
+            <h3>最近 12 次</h3>
+            <button type="button" class="btn btn-ghost btn-sm" id="btnClearTimes">清空成绩</button>
+          </div>
+          <ol class="time-list" id="timeList"></ol>
+          <p class="time-list-note" id="timeListNote">成绩保存在本机浏览器（localStorage），换设备不会同步。</p>
+          <div class="timer-tip">
+            <span class="timer-tip-label">速拧小贴士</span>
+            <p>观察的 15 秒只用来预判，不着急动手；停表后自动生成下一条打乱，保持同一个节奏。</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ===================== 04 记号说明 ===================== -->
+    <section class="lab-card" id="notation" aria-labelledby="notationTitle">
+      <header class="card-head">
+        <div>
+          <p class="card-eyebrow">04 · NOTATION</p>
+          <h2 id="notationTitle">记号说明</h2>
+        </div>
+        <p class="card-note">字母 = 面，撇号 = 逆时针，数字 = 转动次数</p>
+      </header>
+
+      <div class="notation-grid" id="notationGrid">
+        <!-- 6 个面的可视化卡片由 lab.js 注入 -->
+      </div>
+
+      <div class="notation-rules">
+        <article class="rule-card">
+          <span class="rule-glyph" aria-hidden="true">R</span>
+          <div>
+            <h3>字母 = 该面顺时针 90°</h3>
+            <p>把对应颜色朝向自己，像拧瓶盖一样顺时针转 90°。例如 <b>R</b> 是右面顺时针。</p>
+          </div>
+        </article>
+        <article class="rule-card">
+          <span class="rule-glyph rule-glyph--cyan" aria-hidden="true">R'</span>
+          <div>
+            <h3>撇号 = 逆时针 90°</h3>
+            <p>「'」读作 prime，方向相反。所以 <b>R'</b> 是右面逆时针，也就是顺时针 270°。</p>
+          </div>
+        </article>
+        <article class="rule-card">
+          <span class="rule-glyph rule-glyph--magenta" aria-hidden="true">R2</span>
+          <div>
+            <h3>数字 2 = 转 180°</h3>
+            <p><b>R2</b> 表示这一面连续转两个 90°，顺时针和逆时针结果相同。</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="notation-demo">
+        <div class="notation-demo-copy">
+          <span class="notation-demo-label">读一遍这条经典公式</span>
+          <div class="token-board token-board--sm" id="sexyTokens"></div>
+        </div>
+        <button type="button" class="btn" id="btnDemoSexy">▶ 在魔方上演示</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>浙江大学学生魔术魔方协会 · 魔方实验室 <span>RUBIK'S LAB</span></p>
+    <p class="footer-note">
+      纯静态页面，零外部依赖、零网络请求；在本地双击即可打开。
+      <a href="../index.html">← 返回浙大魔协官网</a>
+    </p>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <noscript>
+    <div class="noscript">魔方实验室需要 JavaScript 才能转动，请开启 JavaScript 后刷新页面。</div>
+  </noscript>
+
+  <script src="lab-core.js"></script>
+  <script src="lab.js"></script>
+</body>
+</html>
